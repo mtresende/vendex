@@ -11,19 +11,10 @@ h1 {
 }
 
 .container-fluid {
-    background-color: #9E3C3C;
+    background-color: #3C3E9E;
     color:white;
     width: 100%;
     padding: 10px;
-}
-
-.btn-primary {
-    background-color: #9E3C3C;
-    border: none
-}
-
-.btn-primary:hover {
-    background-color: #b35858;
 }
 
 .navbar-toggler {
