@@ -6,7 +6,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     const alertElement = document.getElementById('loginAlert');
     
     if (username === 'admin' && password === '00000') {
-        window.location.href = '../homepage/home.html';
+        window.location.href = 'homepage/home.html';
     } else {
         // Mostra o alerta
         alertElement.style.display = 'block';
