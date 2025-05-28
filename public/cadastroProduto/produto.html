@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous" />
+    <link rel="stylesheet" href="produto.css" />
+    <title>Vendex</title>
+</head>
+
+<body>
+    <nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center">
+                <h1 class="m-0">VENDEX</h1>
+                <span class="mx-2"></span>
+                <h2 class="m-0">Registro de Produtos/Serviços</h2>
+            </div>
+            <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+            aria-label="Toggle navigation"
+            >
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../registroCompras/compras.html">Registro de compras</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../registroVendas/vendas.html">Registro de vendas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Cadastro de produtos/serviços</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Cadastro de clientes/fornecedores</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container d-flex align-items-center justify-content-center" style="min-height: calc(100vh - 80px); margin-top: 40px;">
+        <div class="row w-100 justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow">
+                    <div class="card-body p-4">
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Tipo</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo" id="tipoProduto" value="produto" checked>
+                                    <label class="form-check-label" for="tipoProduto">
+                                        Produto
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo" id="tipoServico" value="servico">
+                                    <label class="form-check-label" for="tipoServico">
+                                        Serviço
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div id="field-idproduto" class="mb-3">
+                                <label for="idproduto" class="form-label">ID</label>
+                                <input type="number" class="form-control" id="idproduto" required>
+                            </div>
+
+                            <div id="field-nomeproduto" class="mb-3">
+                                <label for="nomeproduto" class="form-label">Nome do produto</label>
+                                <input type="text" class="form-control" id="nomeproduto" required>
+                            </div>
+                            
+                            <div id="field-validade" class="mb-3">
+                                <label for="validade" class="form-label">Validade do produto</label>
+                                <input type="date" class="form-control" id="validade" required>
+                            </div>
+                            
+                            <div id="field-codigo" class="mb-3">
+                                <label for="codigo" class="form-label">Código de barras</label>
+                                <input type="text" class="form-control" id="codigo" required>
+                            </div>
+                            
+                            <div id="field-quantidade" class="mb-3">
+                                <label for="quantidade" class="form-label">Quantidade</label>
+                                <input type="number" class="form-control" id="quantidade" min="1" required>
+                            </div>
+
+                            <div id="field-categoria" class="mb-3" style="display: none;">
+                                <label for="categoria" class="form-label">Categoria</label>
+                                <input type="text" class="form-control" id="categoria">
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg px-5">Confirmar Compra</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="produto.js"></script>
+</body>
+</html>
