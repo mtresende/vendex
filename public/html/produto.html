@@ -65,7 +65,7 @@
             <div class="col-md-8 col-lg-6">
                 <div class="card shadow">
                     <div class="card-body p-4">
-                        <form>
+                        <form action="/produto" method="post">
                             <div class="mb-3">
                                 <label class="form-label">Tipo</label>
                                 <div class="form-check">
@@ -82,34 +82,34 @@
                                 </div>
                             </div>
 
-                            <div id="field-idproduto" class="mb-3">
-                                <label for="idproduto" class="form-label">ID</label>
-                                <input type="number" class="form-control" id="idproduto" required>
+                            <div id="field-id" class="mb-3">
+                                <label for="id" class="form-label">ID</label>
+                                <input type="number" class="form-control" id="id" name="id" required>
                             </div>
 
-                            <div id="field-nomeproduto" class="mb-3">
-                                <label for="nomeproduto" class="form-label">Nome do produto</label>
-                                <input type="text" class="form-control" id="nomeproduto" required>
+                            <div id="field-nome" class="mb-3">
+                                <label for="nome" class="form-label">Nome do produto</label>
+                                <input type="text" class="form-control" id="nome" name="nome" required>
                             </div>
                             
                             <div id="field-validade" class="mb-3">
                                 <label for="validade" class="form-label">Validade do produto</label>
-                                <input type="date" class="form-control" id="validade" required>
+                                <input type="date" class="form-control" id="validade" name="validade" required>
                             </div>
                             
                             <div id="field-codigo" class="mb-3">
-                                <label for="codigo" class="form-label">Código de barras</label>
-                                <input type="text" class="form-control" id="codigo" required>
+                                <label for="codigo_barras" class="form-label">Código de barras</label>
+                                <input type="text" class="form-control" id="codigo_barras" name="codigo_barras" required>
                             </div>
                             
                             <div id="field-quantidade" class="mb-3">
                                 <label for="quantidade" class="form-label">Quantidade</label>
-                                <input type="number" class="form-control" id="quantidade" min="1" required>
+                                <input type="number" class="form-control" id="quantidade" name="quantidade" min="1" required>
                             </div>
 
                             <div id="field-categoria" class="mb-3" style="display: none;">
                                 <label for="categoria" class="form-label">Categoria</label>
-                                <input type="text" class="form-control" id="categoria">
+                                <input type="text" class="form-control" id="categoria" name="categoria">
                             </div>
                             
                             <div class="text-center">

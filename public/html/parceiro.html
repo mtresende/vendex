@@ -65,7 +65,7 @@
             <div class="col-md-8 col-lg-6">
                 <div class="card shadow">
                     <div class="card-body p-4">
-                        <form>
+                        <form action="/parceiro" method="post">
                             <div class="mb-3">
                                 <label class="form-label">Tipo</label>
                                 <div class="form-check">
@@ -82,44 +82,44 @@
                                 </div>
                             </div>
 
-                            <div id="field-cpfcnpj" class="mb-3">
-                                <label for="cpfcnpj" class="form-label">CPF/CNPJ</label>
-                                <input type="text" class="form-control" id="cpfcnpj" required>
+                            <div id="field-cpf-cnpj" class="mb-3">
+                                <label for="cpf_cnpj" class="form-label">CPF/CNPJ</label>
+                                <input type="text" class="form-control" name="cpf_cnpj" id="cpf_cnpj" required>
                             </div>
 
                             <div id="field-telefone" class="mb-3">
                                 <label for="telefone" class="form-label">Telefone</label>
-                                <input type="text" class="form-control" id="telefone" required>
+                                <input type="text" class="form-control" name="telefone" id="telefone" required>
                             </div>
                             
                             <div id="field-endereco" class="mb-3">
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
                                         <label for="cep" class="form-label">CEP</label>
-                                        <input type="text" class="form-control" id="cep" required>
+                                        <input type="text" class="form-control" name="cep" id="cep" required>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="cidade" class="form-label">Cidade</label>
-                                        <input type="text" class="form-control" id="cidade" required>
+                                        <input type="text" class="form-control" name="cidade" id="cidade" required>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="estado" class="form-label">Estado</label>
-                                        <input type="text" class="form-control" id="estado" required>
+                                        <input type="text" class="form-control" name="estado" id="estado" required>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-8">
                                         <label for="rua" class="form-label">Rua</label>
-                                        <input type="text" class="form-control" id="rua" required>
+                                        <input type="text" class="form-control" name="rua" id="rua" required>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="numero" class="form-label">Número</label>
-                                        <input type="text" class="form-control" id="numero" required>
+                                        <input type="text" class="form-control" name="numero" id="numero" required>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="complemento" class="form-label">Complemento</label>
-                                    <input type="text" class="form-control" id="complemento">
+                                    <input type="text" class="form-control" name="complemento" id="complemento">
                                 </div>
                             </div>
                             

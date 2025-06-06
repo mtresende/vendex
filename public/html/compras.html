@@ -65,38 +65,33 @@
             <div class="col-md-8 col-lg-6">
                 <div class="card shadow">
                     <div class="card-body p-4">
-                        <form>
-                            <div class="mb-3">
-                                <label for="numpedido" class="form-label">Número do pedido</label>
-                                <input type="number" class="form-control" id="numpedido" min="1" required>
-                            </div>
-                            
+                        <form action="/compras" method="post">
                             <div class="mb-3">
                                 <label for="dataCompra" class="form-label">Data da compra</label>
-                                <input type="date" class="form-control" id="dataCompra" required>
+                                <input type="date" class="form-control" id="dataCompra" name="data_compra" required>
                             </div>
                             
                             <div class="mb-3">
-                                <label for="produto" class="form-label">Produto</label>
-                                <input type="text" class="form-control" id="produto" placeholder="Nome do produto" required>
+                                <label for="nomeProduto" class="form-label">Produto</label>
+                                <input type="text" class="form-control" id="nomeProduto" name="nome_produto" placeholder="Nome do produto" required>
                             </div>
                             
                             <div class="mb-3">
                                 <label for="quantidade" class="form-label">Quantidade</label>
-                                <input type="number" class="form-control" id="quantidade" min="1" required>
+                                <input type="number" class="form-control" id="quantidade" name="quantidade" min="1" required>
                             </div>
                             
                             <div class="mb-3">
                                 <label for="valorTotal" class="form-label">Valor Total</label>
                                 <div class="input-group">
                                     <span class="input-group-text">R$</span>
-                                    <input type="number" class="form-control" id="valorTotal" step="0.01" min="0" required>
+                                    <input type="number" class="form-control" id="valorTotal" name="valor_total" step="0.01" min="0" required>
                                 </div>
                             </div>
                             
                             <div class="mb-3">
                                 <label for="formaPagamento" class="form-label">Forma de Pagamento</label>
-                                <select class="form-select" id="formaPagamento" required>
+                                <select class="form-select" name="forma_pagamento" id="formaPagamento" required>
                                     <option value="" selected disabled>Selecione a forma de pagamento</option>
                                     <option value="dinheiro">Dinheiro</option>
                                     <option value="pix">PIX</option>
@@ -108,7 +103,7 @@
                             
                             <div class="mb-4">
                                 <label for="prazoPagamento" class="form-label">Prazo de Pagamento</label>
-                                <select class="form-select" id="prazoPagamento" required>
+                                <select class="form-select" name="prazo_pagamento" id="prazoPagamento" required>
                                     <option value="" selected disabled>Selecione o prazo de pagamento</option>
                                     <option value="a_vista">À Vista</option>
                                     <option value="30_dias">30 Dias</option>
