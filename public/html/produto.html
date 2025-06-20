@@ -63,9 +63,16 @@
     <div class="container d-flex align-items-center justify-content-center" style="min-height: calc(100vh - 80px); margin-top: 40px;">
         <div class="row w-100 justify-content-center">
             <div class="col-md-8 col-lg-6">
+                <!-- Alert de Sucesso -->
+                <div class="alert alert-success alert-dismissible fade" role="alert" id="successAlert" style="display: none;">
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    <strong>Sucesso!</strong> Produto/Serviço cadastrado com sucesso!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
                 <div class="card shadow">
                     <div class="card-body p-4">
-                        <form action="/produto" method="post">
+                        <form id="produtoForm" action="/produto" method="post">
                             <div class="mb-3">
                                 <label class="form-label">Tipo</label>
                                 <div class="form-check">
@@ -126,6 +133,140 @@
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../js/produto.js"></script>
+    
+    <script>
+        // Lógica para mostrar/ocultar campos baseado no tipo
+        document.addEventListener('DOMContentLoaded', function () {
+            const tipoProdutoRadio = document.getElementById('tipoProduto');
+            const tipoServicoRadio = document.getElementById('tipoServico');
+
+            const validadeField = document.getElementById('field-validade');
+            const codigoField = document.getElementById('field-codigo');
+            const quantidadeField = document.getElementById('field-quantidade');
+            const categoriaField = document.getElementById('field-categoria');
+            const nomeLabel = document.querySelector('label[for="nome"]');
+
+            function toggleFields() {
+                if (tipoProdutoRadio.checked) {
+                    // Produto selecionado
+                    if (nomeLabel) nomeLabel.textContent = 'Nome do produto';
+                    if (validadeField) validadeField.style.display = 'block';
+                    if (codigoField) codigoField.style.display = 'block';
+                    if (quantidadeField) quantidadeField.style.display = 'block';
+                    if (categoriaField) categoriaField.style.display = 'none';
+
+                    // Tornar campos de produto obrigatórios e de serviço não obrigatórios
+                    if (document.getElementById('validade')) document.getElementById('validade').required = true;
+                    if (document.getElementById('codigo_barras')) document.getElementById('codigo_barras').required = true;
+                    if (document.getElementById('quantidade')) document.getElementById('quantidade').required = true;
+                    if (document.getElementById('categoria')) document.getElementById('categoria').required = false;
+
+                } else if (tipoServicoRadio.checked) {
+                    // Serviço selecionado
+                    if (nomeLabel) nomeLabel.textContent = 'Nome do serviço';
+                    if (validadeField) validadeField.style.display = 'none';
+                    if (codigoField) codigoField.style.display = 'none';
+                    if (quantidadeField) quantidadeField.style.display = 'none';
+                    if (categoriaField) categoriaField.style.display = 'block';
+
+                    // Tornar campos de serviço obrigatórios e de produto não obrigatórios
+                    if (document.getElementById('validade')) document.getElementById('validade').required = false;
+                    if (document.getElementById('codigo_barras')) document.getElementById('codigo_barras').required = false;
+                    if (document.getElementById('quantidade')) document.getElementById('quantidade').required = false;
+                    if (document.getElementById('categoria')) document.getElementById('categoria').required = true; 
+                }
+            }
+
+            // Adiciona ouvintes de evento
+            if (tipoProdutoRadio) tipoProdutoRadio.addEventListener('change', toggleFields);
+            if (tipoServicoRadio) tipoServicoRadio.addEventListener('change', toggleFields);
+
+            // Chama a função inicialmente para configurar os campos com base na seleção padrão
+            toggleFields();
+        });
+
+        // Lógica do formulário com alert de sucesso
+        document.getElementById('produtoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Determinar o tipo selecionado
+            const tipoSelecionado = data.tipo;
+            const mensagemSucesso = tipoSelecionado === 'servico' ? 
+                'Serviço cadastrado com sucesso!' : 
+                'Produto cadastrado com sucesso!';
+            
+            console.log('Enviando dados:', data);
+            console.log('Tipo selecionado:', tipoSelecionado);
+            
+            fetch('/produto', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                console.log('Status da resposta:', response.status);
+                if (!response.ok) {
+                    return response.json().then(errorData => {
+                        throw new Error(errorData.message || 'Erro no servidor');
+                    });
+                }
+                return response.text();
+            })
+            .then(result => {
+                console.log('Resposta do servidor:', result);
+                
+                // Mostrar alert de sucesso com mensagem específica
+                const alert = document.getElementById('successAlert');
+                alert.innerHTML = `
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    <strong>Sucesso!</strong> ${mensagemSucesso}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                `;
+                alert.style.display = 'block';
+                alert.classList.add('show');
+                
+                // Limpar formulário
+                document.getElementById('produtoForm').reset();
+                
+                // Reconfigurar campos após limpar formulário
+                setTimeout(() => {
+                    const toggleFields = () => {
+                        const tipoProdutoRadio = document.getElementById('tipoProduto');
+                        const validadeField = document.getElementById('field-validade');
+                        const codigoField = document.getElementById('field-codigo');
+                        const quantidadeField = document.getElementById('field-quantidade');
+                        const categoriaField = document.getElementById('field-categoria');
+                        const nomeLabel = document.querySelector('label[for="nome"]');
+                        
+                        if (tipoProdutoRadio.checked) {
+                            if (nomeLabel) nomeLabel.textContent = 'Nome do produto';
+                            if (validadeField) validadeField.style.display = 'block';
+                            if (codigoField) codigoField.style.display = 'block';
+                            if (quantidadeField) quantidadeField.style.display = 'block';
+                            if (categoriaField) categoriaField.style.display = 'none';
+                        }
+                    };
+                    toggleFields();
+                }, 100);
+                
+                // Esconder alert após 5 segundos
+                setTimeout(() => {
+                    alert.classList.remove('show');
+                    setTimeout(() => {
+                        alert.style.display = 'none';
+                    }, 150);
+                }, 5000);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert(`Erro ao cadastrar ${tipoSelecionado}: ${error.message}`);
+            });
+        });
+    </script>
 </body>
 </html>

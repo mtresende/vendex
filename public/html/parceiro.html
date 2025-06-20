@@ -63,9 +63,16 @@
     <div class="container d-flex align-items-center justify-content-center" style="min-height: calc(100vh - 80px); margin-top: 40px;">
         <div class="row w-100 justify-content-center">
             <div class="col-md-8 col-lg-6">
+                <!-- Alert de Sucesso -->
+                <div class="alert alert-success alert-dismissible fade" role="alert" id="successAlert" style="display: none;">
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    <strong>Sucesso!</strong> Parceiro cadastrado com sucesso!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
                 <div class="card shadow">
                     <div class="card-body p-4">
-                        <form action="/parceiro" method="post">
+                        <form id="parceiroForm" action="/parceiro" method="post">
                             <div class="mb-3">
                                 <label class="form-label">Tipo</label>
                                 <div class="form-check">
@@ -138,5 +145,44 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../js/produto.js"></script>
+    
+    <script>
+        document.getElementById('parceiroForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            fetch('/parceiro', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.text())
+            .then(result => {
+                // Mostrar alert de sucesso
+                const alert = document.getElementById('successAlert');
+                alert.style.display = 'block';
+                alert.classList.add('show');
+                
+                // Limpar formulário
+                document.getElementById('parceiroForm').reset();
+                
+                // Esconder alert após 5 segundos
+                setTimeout(() => {
+                    alert.classList.remove('show');
+                    setTimeout(() => {
+                        alert.style.display = 'none';
+                    }, 150);
+                }, 5000);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao cadastrar parceiro. Tente novamente.');
+            });
+        });
+    </script>
 </body>
 </html>

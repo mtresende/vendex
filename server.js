@@ -46,16 +46,38 @@ app.post('/parceiro', (req, res) => {
 app.post('/produto', (req, res) => {
     const { id, nome, validade, codigo_barras, quantidade, categoria, tipo } = req.body;
     
+    console.log('Dados recebidos no endpoint /produto:', req.body);
+    console.log('Tipo:', tipo);
+    console.log('Dados extraídos:', { id, nome, validade, codigo_barras, quantidade, categoria, tipo });
+    
     if (tipo === 'servico') {
+        console.log('Cadastrando serviço...');
         const sql = 'INSERT INTO servico (id, nome, categoria) VALUES (?, ?, ?)';
+        console.log('SQL para serviço:', sql);
+        console.log('Parâmetros para serviço:', [id, nome, categoria]);
+        
         db.query(sql, [id, nome, categoria], (err, result) => {
-            if (err) throw err;
+            if (err) {
+                console.error('Erro ao cadastrar serviço:', err);
+                res.status(500).json({ success: false, message: 'Erro ao cadastrar serviço: ' + err.message });
+                return;
+            }
+            console.log('Serviço cadastrado com sucesso:', result);
             res.send('Serviço cadastrado com sucesso');
         });
     } else {
+        console.log('Cadastrando produto...');
         const sql = 'INSERT INTO produto (id, nome, validade, codigo_barras, quantidade) VALUES (?, ?, ?, ?, ?)';
+        console.log('SQL para produto:', sql);
+        console.log('Parâmetros para produto:', [id, nome, validade, codigo_barras, quantidade]);
+        
         db.query(sql, [id, nome, validade, codigo_barras, quantidade], (err, result) => {
-            if (err) throw err;
+            if (err) {
+                console.error('Erro ao cadastrar produto:', err);
+                res.status(500).json({ success: false, message: 'Erro ao cadastrar produto: ' + err.message });
+                return;
+            }
+            console.log('Produto cadastrado com sucesso:', result);
             res.send('Produto cadastrado com sucesso');
         });
     }
