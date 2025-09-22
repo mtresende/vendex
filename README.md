@@ -14,7 +14,6 @@ Um sistema de gerenciamento de vendas com o objetivo de oferecer um crescimento 
 * Matheus Assunção Resende
 * Luiz Felipe Teixeira Silva
 * Guilherme Monteiro de Souza
-* Felipe Batista Costa
 
 ## Orientador
 
@@ -44,14 +43,3 @@ Assim que a primeira versão do sistema estiver disponível, deverá complementa
 # Apresentação
 
 <li><a href="presentation/README.md"> Apresentação da solução</a></li>
-
-
-## Histórico de versões
-
-* 0.1.1
-    * CHANGE: Atualização das documentações. Código permaneceu inalterado.
-* 0.1.0
-    * Implementação da funcionalidade X pertencente ao processo P.
-* 0.0.1
-    * Trabalhando na modelagem do processo de negócio.
-
